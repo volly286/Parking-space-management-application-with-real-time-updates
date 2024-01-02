@@ -1,0 +1,137 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #eaeaea;
+    margin: 0;
+    padding-top: 60px;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333333;
+}
+.header-container {
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    top: 0;
+    width: 100%;
+    background-color: #e0e0e0; /* Changed to match parking spot theme */
+    border-bottom: 3px solid #f1f1f1;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 10px 20px;
+    z-index: 1000; /* Ensure header stays on top */
+    text-align: right; /* Aligns the logout button to the right */
+}
+.header-container h1 {
+    margin: 0;
+    flex-grow: 1; /* Allows it to take up available space */
+}
+.header-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.parking-spots {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Spațiu între locurile de parcare */
+    justify-content: center;
+    padding: 20px;
+}
+
+.parking-spot {
+    width: 100px; /* Lățimea fiecărui loc de parcare */
+    height: 100px; /* Înălțimea fiecărui loc de parcare */
+    border: 1px solid #ccc; /* Bordură pentru locurile de parcare */
+    border-radius: 5px; /* Colțuri rotunjite */
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9em;
+    background-color: #e0e0e0; /* Fundal pentru locuri disponibile */
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+}
+.parking-spot.reserved {
+    background-color: #ffccbc; /* Fundal diferit pentru locuri rezervate */
+    color: #d32f2f; /* Culoare text pentru locuri rezervate */
+    border-color: #d32f2f; /* Bordură pentru locuri rezervate */
+}
+.flash-message {
+    padding: 5px 10px;
+    background-color: #f44336; /* Choose a suitable background color */
+    color: white;
+    text-align: left;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    font-size: 0.8em;
+}
+.logout-button {
+    padding: 10px 15px;
+    background-color: #f44336;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-left: 10px; /* Add some space if there are other elements */
+}
+
+.logout-button:hover {
+    background-color: #d32f2f;
+}
+.release-button {
+    width: 100px; /* Same width as parking spots */
+    height: 40px; /* Height can be less than parking spots for a button-like appearance */
+    border: 1px solid #ccc; /* Same border styling */
+    border-radius: 5px; /* Rounded corners */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9em;
+    background-color: #008CBA; /* Same background color as available parking spots */
+    cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
+    margin: 10px; /* Add some margin for spacing */
+    text-decoration: none; /* Remove underline from text */
+    padding: 10px 15px;
+    border-radius: 5px;
+    color: white;
+    margin-left: 10px;
+}
+
+.release-button:hover {
+    background-color: #0076A3; /* Slightly darker on hover for interactive feedback */
+}
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px 10px;
+    }
+
+    .header-container h1 {
+        font-size: 1.2em; /* Adjust font size for smaller screens */
+        margin-bottom: 10px;
+    }
+
+    .parking-spot {
+        width: 80px; /* Reduce the width for smaller screens */
+        height: 80px; /* Reduce the height for a compact layout */
+        font-size: 0.8em; /* Adjust font size for readability */
+    }
+
+    .parking-spots {
+        gap: 5px; /* Reduce gap to fit more content */
+    }
+
+    .logout-button, .release-button {
+        padding: 8px 10px; /* Adjust padding for smaller screens */
+        font-size: 0.8em; /* Adjust font size for better readability */
+    }
+
+    .flash-message {
+        font-size: 0.9em; /* Adjust font size for flash messages */
+        margin-left: 0px;
+    }
+}
