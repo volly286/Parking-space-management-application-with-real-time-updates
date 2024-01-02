@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Înregistrare</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/register.css">
+</head>
+<body>
+
+    <div class="centered-container">
+        <h2>Formular de Înregistrare</h2>
+
+        <!-- Afișarea mesajelor de eroare -->
+        {% with messages = get_flashed_messages(category_filter=["email_error", "license_error", "registration_error"]) %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form action="/register" method="post">
+            <div class="container">
+                <label for="name"><b>Nume</b></label>
+                <input type="text" placeholder="Introduceți numele" name="name" required>
+
+                <label for="email"><b>Email</b></label>
+                <input type="email" placeholder="Introduceți adresa de email" name="email" required value="{{ email }}">
+                {% if email_error %}
+                    <div class="alert">{{ email_error }}</div>
+                {% endif %}
+
+                <label for="psw"><b>Parolă</b></label>
+                <input type="password" placeholder="Introduceți parola" name="psw" required>
+
+                <label for="license"><b>Nr. Înmatriculare</b></label>
+                <input type="text" placeholder="Introduceți nr. înmatriculare" name="license" required value="{{ license }}">
+                {% if license_error %}
+                    <div class="alert">{{ license_error }}</div>
+                {% endif %}
+
+                <label for="cnp"><b>CNP</b></label>
+                <input type="text" placeholder="Introduceți CNP" name="cnp" required value="{{ cnp }}">
+                {% if cnp_error %}
+                    <div class="alert">{{ cnp_error }}</div>
+                {% endif %}
+
+                <button type="submit">Înregistrare</button>
+                <p class="login-link">Aveți deja un cont? <a href="/login">Autentificare</a></p>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>
