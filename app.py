@@ -1,3 +1,4 @@
+#importuri de biblioteci și module în Python, folosite pentru a construi aplicații web cu Flask și alte funcționalități
 import re
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from flask_mysqldb import MySQL
@@ -6,22 +7,28 @@ from flask_ngrok2 import run_with_ngrok
 from flask_socketio import SocketIO
 
 app = Flask(__name__, template_folder='templates', static_folder='static')
+#-------------------
 app.secret_key = 'o_cheie_secretă_și_dificil_de_ghicit'
-run_with_ngrok(app)
 # Configurare MySQL
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = ''
 app.config['MYSQL_DB'] = 'proiect'
-app.config['SESSION_COOKIE_SECURE'] = True
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
+#-------------------
 mysql = MySQL(app)
+#-------------------
+app.config['SESSION_COOKIE_SECURE'] = True
+#-------------------
 bcrypt = Bcrypt(app)
 socketio = SocketIO(app)
+run_with_ngrok(app)
 
+#functie definită pentru a cripta o parolă folosind modulul bcrypt
 def hash_parola(password):
     return bcrypt.generate_password_hash(password).decode('utf-8')
 
+#functia index() ce gestioneaza ruta '/'
 @app.route('/')
 def index():
     if 'UserID' not in session:
@@ -30,16 +37,16 @@ def index():
     user_id = session['UserID']
     cur = mysql.connection.cursor()
 
-    # Fetch the username from the database based on the user_id
+    # Cauta numele in baza de date dupa coloana user_id
     cur.execute("SELECT name FROM users WHERE id = %s", (user_id,))
     user = cur.fetchone()
     username = user['name'] if user else 'Guest'
 
-    # Fetch parking spots data
+    #Cauta informatii despre parking_spots
     cur.execute("SELECT * FROM parking_spots")
     parking_spots = cur.fetchall()
 
-    # Fetch license numbers for reserved spots
+    #Preia nr inmatriculare ptr spatiile rezervate
     reserved_spot_ids = [spot['spot_id'] for spot in parking_spots if spot['is_reserved']]
     if reserved_spot_ids:
         cur.execute("SELECT reserved_by, license_number FROM parking_spots WHERE spot_id IN %s", (reserved_spot_ids,))
@@ -132,28 +139,28 @@ def reserve(spot_id):
 
     cur = mysql.connection.cursor()
 
-    # Check if the user already has a reserved parking spot
+    # Verifica daca utilizatorul are deja un loc rezervat
     cur.execute("SELECT * FROM parking_spots WHERE reserved_by = %s", (user_id,))
     if cur.fetchone():
-        flash('Aveți deja un loc rezervat', 'error')  # Flash an error message
+        flash('Aveți deja un loc rezervat', 'error')  # Display mesaj eroare
         cur.close()
-        return redirect(url_for('index'))  # Redirect to the index page
+        return redirect(url_for('index'))  #Intoarere pe pagina index
 
-    # Check if the requested spot is available
+    #Verifica daca spatiul este disponibil
     cur.execute("SELECT * FROM parking_spots WHERE spot_id = %s AND is_reserved = False", (spot_id,))
     spot = cur.fetchone()
 
     if spot:
-        # Get the user's license number from the database
+        # Preia numarul de inmatriculare din baza de date
         cur.execute("SELECT license_number FROM users WHERE id = %s", (user_id,))
         user_data = cur.fetchone()
         user_license_number = user_data['license_number']
 
-        # Reserve the spot if it's available and update the license_number
+        # rezerva locul daca este disponibil si actualizeaza nri in baza de date 
         cur.execute("UPDATE parking_spots SET is_reserved = True, reserved_by = %s, license_number = %s WHERE spot_id = %s", (user_id, user_license_number, spot_id))
         mysql.connection.commit()
 
-        # Emit the WebSocket event for real-time update
+        # Functie ptr actualizare in timp real  a modificarilor de pe site
         socketio.emit('update_parking_spot', {'spot_id': spot_id, 'status': 'reserved', 'license_number': user_license_number})
 
     cur.close()
@@ -170,23 +177,23 @@ def release_spot():
 
     cur = mysql.connection.cursor()
 
-    # Check if the user has a reserved parking spot
+    # Verifica daca utilizatorul are deja un loc rezervat
     cur.execute("SELECT * FROM parking_spots WHERE reserved_by = %s", (user_id,))
     reserved_spot = cur.fetchone()
 
     if not reserved_spot:
-        # If no spot is reserved, flash a message and redirect
+        # Eroare in cazul in care nu exista niciun loc rezervat 
         flash('Nu aveți niciun loc rezervat', 'info')
         cur.close()
-        return redirect(url_for('index'))  # Redirect to the index page
+        return redirect(url_for('index'))  #Redirectioneaza catre pagina principala
 
     spot_id = reserved_spot['spot_id']
 
-    # Release the reserved parking spot
+    #Eliberare loc rezervat
     cur.execute("UPDATE parking_spots SET is_reserved = False, reserved_by = NULL, license_number = NULL WHERE spot_id = %s", (spot_id,))
     mysql.connection.commit()
 
-    # Emit the SocketIO event
+    # Functie ptr actualizare in timp real  a modificarilor de pe site
     socketio.emit('spot_released', {'spot_id': spot_id, 'status': 'available'})
 
     cur.close()
