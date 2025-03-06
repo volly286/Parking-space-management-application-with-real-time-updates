@@ -1,4 +1,4 @@
-#importuri de biblioteci și module în Python, folosite pentru a construi aplicații web cu Flask și alte funcționalități
+#importuri de biblioteci și module în Python, folosite pentru a construi aplicații web cu Flask și alte funcționalităț
 import re
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from flask_mysqldb import MySQL
