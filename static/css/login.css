@@ -54,7 +54,7 @@ button:hover {
     opacity: 0.9;
 }
 button:hover, input[type="text"]:hover, input[type="email"]:hover, input[type="password"]:hover {
-    /* Efecte subtile de tranzitie */
+   
     transition: background-color 0.3s, box-shadow 0.3s;
 }
 .signup-link {
