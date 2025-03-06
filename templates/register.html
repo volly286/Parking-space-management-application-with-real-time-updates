@@ -9,7 +9,7 @@
     <div class="centered-container">
         <h2>Formular de Înregistrare</h2>
 
-        <!-- Afișarea mesajelor de eroare -->
+    
         {% with messages = get_flashed_messages(category_filter=["email_error", "license_error", "registration_error"]) %}
             {% if messages %}
                 {% for message in messages %}
