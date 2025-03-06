@@ -18,24 +18,24 @@ body {
     background-color: white;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 15px; /* Redus padding-ul */
+    padding: 15px; 
     margin: 20px;
 }
 
 h2 {
     margin-top: 0;
-    margin-bottom: 10px; /* Margine redusă sub h2 */
+    margin-bottom: 10px; 
 }
 
 .container {
-    padding: 10px; /* Redus padding-ul containerului interior */
+    padding: 10px; 
     text-align: left;
 }
 
 input[type="text"], input[type="email"], input[type="password"] {
     width: 100%;
-    padding: 10px; /* Redus padding-ul pentru input-uri */
-    margin: 5px 0 10px 0; /* Redus marginea între input-uri */
+    padding: 10px; 
+    margin: 5px 0 10px 0; 
     border: 1px solid #ccc;
     box-sizing: border-box;
     margin-bottom: 5px;
@@ -44,7 +44,7 @@ input[type="text"], input[type="email"], input[type="password"] {
 button {
     background-color: #008CBA;
     color: white;
-    padding: 12px 20px; /* Ajustat padding-ul butonului */
+    padding: 12px 20px; 
     margin: 8px 0;
     border: none;
     cursor: pointer;
@@ -55,12 +55,12 @@ button:hover {
     opacity: 0.9;
 }
 button:hover, input[type="text"]:hover, input[type="email"]:hover, input[type="password"]:hover {
-    /* Efecte subtile de tranzitie */
+    
     transition: background-color 0.3s, box-shadow 0.3s;
 }
 .login-link, .signup-link {
     text-align: center;
-    margin-top: 10px; /* Redus marginea deasupra link-urilor */
+    margin-top: 10px; 
 }
 
 .login-link a, .signup-link a {
@@ -72,15 +72,15 @@ button:hover, input[type="text"]:hover, input[type="email"]:hover, input[type="p
     text-decoration: underline;
 }
 .alert {
-    color: #d32f2f; /* O nuanță subtilă de roșu */
-    background-color: #fbe9e7; /* Un fundal roșu foarte deschis */
-    border-left: 4px solid #d32f2f; /* O bordură laterală pentru a atrage atenția */
-    padding: 8px 10px; /* Padding moderat pentru text */
-    margin: 10px 0; /* Marginea pentru a separa mesajul de eroare de câmpurile formularului */
-    font-size: 0.9em; /* O dimensiune mai mică a fontului pentru un aspect subtil */
-    border-radius: 2px; /* Colțuri ușor rotunjite */
-    box-sizing: border-box; /* Asigură-te că padding-ul și bordura nu măresc dimensiunea totală */
-    text-align: left; /* Aliniere la stânga pentru text */
+    color: #d32f2f; 
+    background-color: #fbe9e7; 
+    border-left: 4px solid #d32f2f; 
+    padding: 8px 10px; 
+    margin: 10px 0; 
+    font-size: 0.9em; 
+    border-radius: 2px;
+    box-sizing: border-box; 
+    text-align: left;
 }
 @media (max-width: 600px) {
     .centered-container {
