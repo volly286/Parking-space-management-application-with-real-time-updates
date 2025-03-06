@@ -18,7 +18,6 @@ Acest ghid te va ghida pas cu pas pentru instalarea și configurarea aplicației
    - Apasă pe **Install Now** și confirmă în promptul de siguranță cu **Yes**.
    - La finalizarea instalării, apasă pe **Close**.
 
-**Python a fost instalat cu succes!**
 
 ---
 
@@ -33,7 +32,6 @@ Acest ghid te va ghida pas cu pas pentru instalarea și configurarea aplicației
      - Apasă pe **Next** pentru fiecare fereastră de instalare, ca în imaginea de mai sus.
      - La final, apasă pe **Finish**.
 
-**XAMPP a fost instalat cu succes!**
 
 ---
 
