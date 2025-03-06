@@ -1,5 +1,5 @@
 
-# Aplicatie de Management a Locurilor de Parcar
+# Aplicatie de Management a Locurilor de Parcare
 
 ## 1. Descriere
 
