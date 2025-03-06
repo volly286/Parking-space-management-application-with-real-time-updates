@@ -132,7 +132,5 @@ socket.on('update_parking_spot', function(data) {
 });
 ```
 
-## 7. Linkuri Utile
+## 7. Link Util Python-Ngrok
 - [YouTube Tutorial](https://www.youtube.com/watch?v=m7ucpSTtqEo&ab_channel=CodegnanDestination)
-- [ChatGPT - Conversație 1](https://chat.openai.com/share/4494b6fb-97c3-4025-a110-8e7da4b30617)
-- [ChatGPT - Conversație 2](https://chat.openai.com/share/60846d0d-7ba3-479b-af92-b30364f4ac84)
