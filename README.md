@@ -82,7 +82,10 @@ pip install flask_socketio
 
 ## 6. Configurarea Aplicației
 
-### Verifică dacă Python este instalat corect:
-- În **CMD**, folosește comanda:
+- Asigură-te că fișierele `app.py`, folderul `static` și `templates` sunt prezente.
+
+### Pornirea Aplicației:
+- În terminal, navighează la folderul aplicației și folosește comanda:
   ```bash
-  python --version
+  python app.py
+
